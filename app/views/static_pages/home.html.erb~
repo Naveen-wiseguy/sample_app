@@ -1,0 +1,4 @@
+<% provide(:title,"Home") %>
+<h1>Sample App</h1>
+<p>Sample app of the 
+<a href="www.railstutorial.org/book"> Rails Tutorial</a> </p>
