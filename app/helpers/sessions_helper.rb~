@@ -37,7 +37,6 @@ module SessionsHelper
   end
 #logging a user out of the site
  def log_out
-   forget(current_user)
    session.delete(:user_id)
    @current_user=nil
  end
