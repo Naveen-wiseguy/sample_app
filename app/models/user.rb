@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
 
 #Creating a digest to store in database securely
  def User.digest(string)
-  cost=ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-  BCrypt::Password.create(string,cost)
+  cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine::DEFAULT_COST
+
+  BCrypt::Password.create(string, cost: cost)
  end
 
 #Generating a random token
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
   end
 
 #Returns true of the token matches the remembered digest token
-  def authenticatesd?(remember_token)
+  def authenticated?(remember_token)
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
